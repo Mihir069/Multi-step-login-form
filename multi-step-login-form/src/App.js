@@ -1,7 +1,9 @@
+import Components from "./component";
+
 const App = () =>{
     return(
         <div>
-            Hell0
+            <Components/>
         </div>
     )
 }
