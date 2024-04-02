@@ -1,9 +1,8 @@
-import Components from "./component";
-
+import RegistrationPage from "./page/registration-page";
 const App = () =>{
     return(
         <div>
-            <Components/>
+            <RegistrationPage/>
         </div>
     )
 }
