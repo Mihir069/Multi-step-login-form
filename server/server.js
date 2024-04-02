@@ -12,28 +12,28 @@ server.use(bodyParser.json());
 server.get(`/userdb`,(req,res)=>{
     res.json(userRecords)
 })
-// server.post('/login',(req,res)=>{
-//     res.json({
-//         status: 'sucess',
-//         username,
-//         email,
-//     });
-// })
-// //post the user data 
-// server.post(`/userdb`,(req,res)=>{
-//     const {body} = req;
-//     const {username,email,password} = body;
-//     const user = {
-//         username,
-//         email,
-//         password
-//     }
-//     userRecords.push(user);
-//     // res.json(user)
-//     res.json({
-//         status:'sucess'
-//     })
-// })
+server.post('/login',(req,res)=>{
+    res.json({
+        status: 'sucess',
+        username,
+        email,
+    });
+})
+//post the user data 
+server.post(`/userdb`,(req,res)=>{
+    const {body} = req;
+    const {username,email,password} = body;
+    const user = {
+        username,
+        email,
+        password
+    }
+    userRecords.push(user);
+    // res.json(user)
+    res.json({
+        status:'sucess'
+    })
+})
 //creating a server
 server.listen(3001,()=>{
     console.log(`Listening at http://localhost:3001/userdb`)
