@@ -63,15 +63,19 @@ const LoginForm = () => {
             fetch(`http://localhost:3001/userdb`)
                 .then((res) => res.json())
                 .then((data) => {
-                    data.forEach((id) => {
-                        if (id.username === username && id.password === password) {
-                            console.log(data);
+                    let userFound = false;
+                    data.forEach((user) => {
+                        if (user.username === username && user.password === password) {
+                            console.log(user);
                             setFormSuccess(true);
-                        } else {
-                            console.log("not get user");
-                            setFormError(true);
+                            userFound = true;
                         }
                     });
+                
+                    if (!userFound) {
+                        console.log("User not found");
+                        setFormError(true);
+                    }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -93,7 +97,7 @@ const LoginForm = () => {
             </div>
             <div className="mt-10 mx-auto w-full max-w-sm">
                 <form action="#" onSubmit={handleSubmit}>
-                    <div className={`grid grid-cols-2 gap-5 ${usernameError ? 'error' : ''}`}>
+                    <div className={`grid grid-cols-2 gap-5 `}>
                         <div className="my-5 block">
                             <label htmlFor="text" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
                             <input type="text" placeholder="name" className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={name} onChange={(e) => setName(e.target.value)} />

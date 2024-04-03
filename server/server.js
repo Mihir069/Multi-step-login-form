@@ -22,14 +22,18 @@ server.post('/login',(req,res)=>{
 //post the user data 
 server.post(`/userdb`,(req,res)=>{
     const {body} = req;
-    const {username,email,password} = body;
+    const {name,username,email,password} = body;
+    const id = (userRecords.length+1).toString();
+
     const user = {
+        id,
+        name,
         username,
         email,
         password
     }
     userRecords.push(user);
-    // res.json(user)
+    res.json(user)
     res.json({
         status:'sucess'
     })
