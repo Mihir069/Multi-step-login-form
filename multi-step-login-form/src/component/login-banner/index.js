@@ -1,10 +1,8 @@
 const LoginBanner = () =>{
     return(
-        <div className="banner">
-            <div className="">
-                <img src="./svg/login-banner.jpg" alt="login-banner"/>
-            </div>
-        </div>
+        <> 
+            <img src="./svg/login-banner.png" alt="login-banner"  className="w-full h-full object-fit"/>
+        </>
     )
 }
 export default LoginBanner;
