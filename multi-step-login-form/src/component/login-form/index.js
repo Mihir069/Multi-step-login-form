@@ -100,22 +100,22 @@ const LoginForm = () => {
                     <div className={`grid grid-cols-2 gap-5 `}>
                         <div className="my-5 block">
                             <label htmlFor="text" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                            <input type="text" placeholder="name" className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={name} onChange={(e) => setName(e.target.value)} />
+                            <input type="text" placeholder="name" className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="my-5 block">
                             <label htmlFor="text" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
-                            <input type="text" placeholder="username" className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            <input type="text" placeholder="username" className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={username} onChange={(e) => setUsername(e.target.value)} />
                             {renderError('username')}
                         </div>
                     </div>
                     <div className="my-5 block">
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                        <input type="email" placeholder="Email" className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email" placeholder="Email" className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={email} onChange={(e) => setEmail(e.target.value)} />
                         {renderError('email')}
                     </div>
                     <div className="my-5">
                         <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                        <input type="password" placeholder="6+ characters" className="mt-1 w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" placeholder="6+ characters" className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400  invalid:bg-red-500" value={password} onChange={(e) => setPassword(e.target.value)} />
                         {renderError('password')}
                     </div>
                     <div className="my-5">
