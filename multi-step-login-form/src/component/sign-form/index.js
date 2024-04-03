@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignInFrom = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [formSuccess, setFormSuccess] = useState("");
+    const [formError, setFormError] = useState("");
     return (
         <>
             <div class="text-sm font-semibold ">
