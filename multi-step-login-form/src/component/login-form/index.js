@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -10,6 +10,7 @@ const LoginForm = () => {
     const [passwordError, setPasswordError] = useState("");
     const [formSuccess, setFormSuccess] = useState("");
     const [formError, setFormError] = useState("");
+    const navigate = useNavigate();
 
     const isRequired = (value) => value.trim() !== '';
     const isBetween = (length, min, max) => length >= min && length <= max;
@@ -69,6 +70,7 @@ const LoginForm = () => {
                             console.log(user);
                             setFormSuccess(true);
                             userFound = true;
+                            navigate('/createprofile');
                         }
                     });
                 
@@ -91,7 +93,7 @@ const LoginForm = () => {
                     New Member? <Link to="/" class="text-blue-500">Sign Up</Link>
                 </h6>
             </div>
-            <div className="mt-10 mx-auto w-full max-w-sm">
+            <div className="mx-auto w-full max-w-sm mt-10">
                 <h2 className="text-2xl text-[#060606] font-bold justify-start">Sign in to Dribbble</h2>
                 {formError && <div className="text-red-500">Error: Invalid username or password</div>}
             </div>
