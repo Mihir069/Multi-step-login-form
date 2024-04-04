@@ -121,14 +121,14 @@ const LoginForm = () => {
                     <div className="my-5">
                         <input type="checkbox" className="border border-gray-400 cursor-pointer" required />
                         <span className="mx-3">
-                            Creating an account means you're okay with out <Link to="/" class="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="/" class="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="/" class="text-blue-500 font-semibold">Settings</Link>.
+                            Please read the <Link to="#" class="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="#" class="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="#" class="text-blue-500 font-semibold">Settings</Link> before login.
                         </span>
                     </div>
                     <div class="mt-5">
                         <button class=" bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Login</button>
                     </div>
                     <span className="text-xs block text-gray-500 w-80 mt-4 ">
-                        This site is protected by reCAPTCHA and the Google <Link to="/" class="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/" class="text-blue-500 font-semibold">Terms of Service</Link> apply
+                        This site is protected by reCAPTCHA and the Google <Link to="#" class="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/#" class="text-blue-500 font-semibold">Terms of Service</Link> apply
                     </span>
                     
                 </form>
