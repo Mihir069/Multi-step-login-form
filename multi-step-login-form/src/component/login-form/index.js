@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
     const [username, setUsername] = useState("");
@@ -8,14 +8,13 @@ const LoginForm = () => {
     const [name, setName] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [formSuccess, setFormSuccess] = useState("");
     const [formError, setFormError] = useState("");
     const navigate = useNavigate();
 
     const isRequired = (value) => value.trim() !== '';
     const isBetween = (length, min, max) => length >= min && length <= max;
     const isPasswordSecure = (password) => {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/;
         return regex.test(password);
     };
     const checkUsername = () => {
@@ -68,7 +67,6 @@ const LoginForm = () => {
                     data.forEach((user) => {
                         if (user.username === username && user.password === password) {
                             console.log(user);
-                            setFormSuccess(true);
                             userFound = true;
                             navigate('/createprofile');
                         }

@@ -9,14 +9,13 @@ const SignInFrom = () => {
     const [name,setname] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const [formSuccess,setFormSuccess] = useState(false);
     const [formError,setFormError] = useState(false);
     const navigate = useNavigate();
 
     const isRequired = (value) => value.trim() !== '';
     const isBetween = (length, min, max) => length >= min && length <= max;
     const isPasswordSecure = (password) => {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})/;
         return regex.test(password);
     };
     const checkUsername = () => {
@@ -100,6 +99,7 @@ const SignInFrom = () => {
             </div>
             <div className=" mx-auto w-full max-w-sm mt-10">
                 <h2 className="text-2xl text-[#060606] font-bold justify-start">Sign up to Dribbble</h2>
+                {formError && <div className="text-red-500">Error: Invalid username or password</div>}
             </div>
 
             <div className="mt-4 mx-auto w-full max-w-sm">
