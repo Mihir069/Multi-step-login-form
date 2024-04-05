@@ -3,6 +3,7 @@ import RegistrationPage from "./page/registration-page";
 import LoginPage from "./page/login-page";
 import CreateProfile from "./page/create-profile-page";
 import TypeSelection from "./page/type-selection";
+import Home from "./page/home-page";
 const App = () => {
     return (
         <>
@@ -12,6 +13,7 @@ const App = () => {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/createprofile/:id" element={<CreateProfile />} />
                     <Route path="/typeselection/:id" element={<TypeSelection />} />
+                    <Route path="/home" element={<Home/>}/>
                 </Routes>
             </BrowserRouter>
         </>
