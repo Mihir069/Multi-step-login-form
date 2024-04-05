@@ -1,3 +1,7 @@
 .banner-img{
     height: 693px;
 }
+.transformed {
+    transform: translateY(-50px); 
+    transition: transform 0.3s ease; 
+}

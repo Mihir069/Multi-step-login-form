@@ -1,15 +1,23 @@
 import UploadImg from "../../component/upload-img";
 import Logo from "../../component/logo";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 const CreateProfile = () => {
     const navigate = useNavigate();
     const [location, setLocation] = useState("");
-    const [isFormFilled, setIsFormFilled] = useState(false)
+    const [userData,setUserData] = useState(null);
+    const [isFormFilled, setIsFormFilled] = useState(false);
+    const {id} = useParams();
 
+    useEffect(()=>{
+        fetch(`http://localhost:3001/userdb/${id}`)
+            .then(res=>res.json())
+            .then(data=>setUserData(data))
+            .catch((error)=>console.error("Error in fetching",error))
+    },[id])
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate("/login")
+        navigate(`/typeselection/${id}`)
     }
 
     const handleLocationChange = (e) => {
@@ -21,13 +29,13 @@ const CreateProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-12 pt-10 px-10">
                 <div className="col-span-4 md:col-span-1">
                     <div className="float-left ">
-                        <Logo />
+                        <Logo/>
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-xl p-4">
+            <div className="mx-auto max-w-2xl p-4">
                 <div className="block my-6">
-                    <h2 className="text-3xl text-[#060606] font-bold">Welcome! Let"s create your profile</h2>
+                    <h2 className="text-3xl text-[#060606] font-bold">Welcome, {userData && userData.name}! Let"s create your profile</h2>
                     <p className="mt-2 text-[#757575]">Let others get to know you better! You can do these later</p>
                 </div>
                 <form className="block my-6" onSubmit={handleSubmit}>

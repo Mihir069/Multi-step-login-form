@@ -91,9 +91,9 @@ const SignInFrom = () => {
     };
     return (
         <>
-            <div class="text-sm font-semibold ">
+            <div className="text-sm font-semibold ">
                 <h6 className="float-right mx-10 my-5">
-                    Already a member? <Link to="/login" class="text-blue-500">Sign In</Link>
+                    Already a member? <Link to="/login" className="text-blue-500">Sign In</Link>
                 </h6>
 
             </div>
@@ -128,14 +128,14 @@ const SignInFrom = () => {
                     <div className="my-5">
                         <input type="checkbox" className="border border-gray-400 cursor-pointer" required />
                         <span className="mx-3">
-                            Creating an account means you're okay with our <Link to="/" class="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="/" class="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="/" class="text-blue-500 font-semibold">Settings</Link>.
+                            Creating an account means you're okay with our <Link to="/" className="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="/" className="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="/" className="text-blue-500 font-semibold">Settings</Link>.
                         </span>
                     </div>
-                    <div class="mt-5">
-                        <button class=" bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Create Account</button>
+                    <div className="mt-5">
+                        <button className=" bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Create Account</button>
                     </div>
                     <span className="text-xs block text-gray-500 w-80 mt-4 ">
-                        This site is protected by reCAPTCHA and the Google <Link to="/" class="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/" class="text-blue-500 font-semibold">Terms of Service</Link> apply
+                        This site is protected by reCAPTCHA and the Google <Link to="/" className="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/" className="text-blue-500 font-semibold">Terms of Service</Link> apply
                     </span>
                 </form>
 

@@ -38,6 +38,16 @@ server.post(`/userdb`,(req,res)=>{
         status:'sucess'
     })
 })
+//get user record by ID
+server.get(`/userdb/:id`, (req, res) => {
+    const { id } = req.params;
+    const user = userRecords.find(user => user.id === id);
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404).json({ error: 'User not found' });
+    }
+});
 //creating a server
 server.listen(3001,()=>{
     console.log(`Listening at http://localhost:3001/userdb`)

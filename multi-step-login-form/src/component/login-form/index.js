@@ -67,8 +67,9 @@ const LoginForm = () => {
                     data.forEach((user) => {
                         if (user.username === username && user.password === password) {
                             console.log(user);
+                            
                             userFound = true;
-                            navigate('/createprofile');
+                            navigate(`/createprofile/${user.id}`);
                         }
                     });
                 
@@ -86,9 +87,9 @@ const LoginForm = () => {
 
     return (
         <>
-            <div class="text-sm font-semibold ">
+            <div className="text-sm font-semibold ">
                 <h6 className="float-left mx-10 my-5">
-                    New Member? <Link to="/" class="text-blue-500">Sign Up</Link>
+                    New Member? <Link to="/" className="text-blue-500">Sign Up</Link>
                 </h6>
             </div>
             <div className="mx-auto w-full max-w-sm mt-10">
@@ -121,14 +122,14 @@ const LoginForm = () => {
                     <div className="my-5">
                         <input type="checkbox" className="border border-gray-400 cursor-pointer" required />
                         <span className="mx-3">
-                            Please read the <Link to="#" class="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="#" class="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="#" class="text-blue-500 font-semibold">Settings</Link> before login.
+                            Please read the <Link to="#" className="text-blue-500 font-semibold">Terms of Service</Link>,<Link to="#" className="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="#" className="text-blue-500 font-semibold">Settings</Link> before login.
                         </span>
                     </div>
-                    <div class="mt-5">
-                        <button class=" bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Login</button>
+                    <div className="mt-5">
+                        <button className=" bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Login</button>
                     </div>
                     <span className="text-xs block text-gray-500 w-80 mt-4 ">
-                        This site is protected by reCAPTCHA and the Google <Link to="#" class="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/#" class="text-blue-500 font-semibold">Terms of Service</Link> apply
+                        This site is protected by reCAPTCHA and the Google <Link to="#" className="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/#" className="text-blue-500 font-semibold">Terms of Service</Link> apply
                     </span>
                     
                 </form>

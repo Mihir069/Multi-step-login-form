@@ -16,7 +16,7 @@ const UploadImg = () => {
         <>
         <div className='flex items-center space-x-6'>
             <div>
-                <img id='preview-img' className='h-32 w-32 object-cover rounded-full outline-dashed  outline-gray-400' src={previewImage || './svg/camera.png'}  alt={`${previewImage}`}/>
+                <img id='preview-img' className='h-32 w-32 object-cover rounded-full outline-dashed  outline-gray-400' src={previewImage || '/./svg/camera.png'}  alt={`${previewImage}`}/>
             </div>
             <label className='block'>
                 <input type='file' onChange={handleFileChange} className='block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100'/>
