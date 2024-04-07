@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignInForm = () => {
+const SignUpForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         username: '',
@@ -59,7 +59,7 @@ const SignInForm = () => {
             return
         }
         else{
-            navigate('/typeselection')
+            navigate('/signup/createprofile')
         }
     };
 
@@ -92,7 +92,7 @@ const SignInForm = () => {
                 )}
             </div>
 
-            <div className="mt-4 mx-auto w-full max-w-sm">
+            <div className="mt-4 mx-auto w-full max-w-sm ">
                 <form onSubmit={handleSubmit}>
                     <div className={`grid grid-cols-2 gap-5`}>
                         <div className="my-5 block">
@@ -157,4 +157,4 @@ const SignInForm = () => {
     )
 }
 
-export default SignInForm;
+export default SignUpForm;

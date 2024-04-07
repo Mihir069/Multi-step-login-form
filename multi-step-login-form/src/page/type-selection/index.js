@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import Logo from "../../component/logo";
 const TypeSelection = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(-1)
     }
     const handleClickButton = () => {
-        navigate(`/home/${id}`)
+        navigate(`/home`)
     }
     return (
         <>

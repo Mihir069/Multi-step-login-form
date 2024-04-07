@@ -4,7 +4,7 @@ const Logo = () => {
     return (
         <>
 
-        <Link to="/">
+        <Link to="/signup">
             <img src="/./svg/dribbble-logo.png" alt="logo" />
         </Link>
 
