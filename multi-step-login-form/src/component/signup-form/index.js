@@ -108,7 +108,17 @@ const SignUpForm = () => {
                             />
                         </div>
                         <div className="my-5 block">
-                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
+                            <div className="flex">
+                                {isUsernameTaken && (
+                                    <img
+                                        src="/./svg/triangle-exclamation-solid.svg"
+                                        alt="Warning sign"
+                                        className=" w-4"
+                                    />
+                                )}
+                                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
+                            </div>
+
                             <input
                                 type="text"
                                 id="username"
