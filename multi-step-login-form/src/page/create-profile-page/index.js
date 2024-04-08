@@ -9,27 +9,32 @@ const CreateProfile = () => {
     const [isLocationValid, setIsLocationValid] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [isImageUploaded, setIsImageUploaded] = useState(false);
-
-    const validLocation = ['India','San Francisco','Australia']
-    const isSubmitDisabled = !(isLocationValid && isImageUploaded);
+    const validLocations = ['India', 'San Francisco', 'Australia'];
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!isSubmitDisabled) {
+
+        if (isLocationValid && isImageUploaded) {
             navigate('/signup/typeselection');
+        } else {
+            if (location.trim() === '') {
+                alert('Please enter a location.');
+            }
         }
     };
 
     const handleLocationChange = (e) => {
         const value = e.target.value;
         setLocation(value);
-        setIsLocationValid(validLocation.includes(value.trim()));
+        setIsLocationValid(value.trim() !== '' && validLocations.includes(value.trim()));
     };
 
     const handleImageChange = (imageUrl) => {
         setPreviewImage(imageUrl);
         setIsImageUploaded(true);
     };
+
+    const isSubmitDisabled = !(isLocationValid && isImageUploaded);
 
     return (
         <>
@@ -56,15 +61,15 @@ const CreateProfile = () => {
                         <input
                             type="text"
                             placeholder="Enter a location"
-                            className="shadow-md rounded-md w-full px-3 py-2 mt-2"
+                            className="shadow-md rounded-md w-full px-3 py-2 mt-2 font-bold"
                             value={location}
                             onChange={handleLocationChange}
                         />
                     </div>
                     <div className="my-10">
-                        {!isLocationValid && (
+                        {location.trim() !== '' && !isLocationValid && (
                             <p className="text-sm text-center text-red-400 mt-1 font-semibold w-2/5">
-                                Valid locations: India,San Francisco
+                                Valid locations: India, San Francisco
                             </p>
                         )}
                         <button
@@ -72,12 +77,10 @@ const CreateProfile = () => {
                             disabled={isSubmitDisabled}
                         >
                             Next
-                            
                         </button>
-                        { isLocationValid && (
-                            <p className='text-sm text-center text-gray-400 font-bold w-2/5 mt-1'>or Press RETURN</p>
-                        ) }
-       
+                        {isLocationValid && (
+                            <p className="text-sm text-center text-gray-400 font-bold w-2/5 mt-1">or Press RETURN</p>
+                        )}
                     </div>
                 </form>
             </div>

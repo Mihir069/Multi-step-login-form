@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import RegistrationPage from "./page/registration-page";
 import CreateProfile from "./page/create-profile-page";
 import TypeSelection from "./page/type-selection";
-import Home from "./page/home-page";
+import ConfirmationPage from "./page/confirmation-page";
+
 
 const App = () => {
     return (
@@ -12,7 +13,7 @@ const App = () => {
                 <Route path="/signup" element={<RegistrationPage />} />
                 <Route path="/signup/createprofile" element={<CreateProfile />} />
                 <Route path="/signup/typeselection" element={<TypeSelection />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/confirmationpage" element={<ConfirmationPage />} />
             </Routes>
         </BrowserRouter>
     );

@@ -81,7 +81,7 @@ const SignUpForm = () => {
                 {passwordError && (
                     <p className="text-red-500 text-sm mt-5 ml-1 relative">
                         <span className="absolute top-5 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                        <span className="absolute top-3.5 left-3">Password should be at least 6 characters long</span>
+                        <span className="absolute top-3.5 left-3">Password should have at least 6 characters</span>
                     </p>
                 )}
                 {submitError && (
@@ -138,8 +138,18 @@ const SignUpForm = () => {
                             className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 invalid:bg-red-200"
                         />
                     </div>
-                    <div className="my-5">
-                        <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <div className="my-5 block">
+                        <div className="flex">
+                            {passwordError && (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className=" w-4"
+                                />
+                            )}
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                        </div>
+                        
                         <input
                             type="password"
                             name="password"

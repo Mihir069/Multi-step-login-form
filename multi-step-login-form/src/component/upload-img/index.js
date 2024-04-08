@@ -20,7 +20,7 @@ const UploadImg = ({ onImageChange }) => {
             <div>
                 <img
                     className="h-32 w-32 object-cover rounded-full outline-dashed outline-gray-400"
-                    src={previewImage || '/path/to/default/image.jpg'}
+                    src={previewImage || '/./svg/camera.png'}
                     alt={previewImage ? 'Preview' : ''}
                 />
             </div>

@@ -6,7 +6,7 @@ const SearchBar = () =>{
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
                     <img src="/./svg/magnifying-glass-solid.svg" alt="search" className="w-6" />
                 </div>
-                <input type="search" id="default-search" class="w-full p-4 ps-10 text-sm text-gray-700 border rounded-lg focus:ring-blue-500 bg-gray-300  " placeholder="Search" />
+                <input type="search" id="default-search" class="w-full p-3 ps-10 text-sm border-hidden text-gray-700 rounded-lg bg-gray-200  " placeholder="Search" />
 
             </div>
         </>

@@ -24,7 +24,7 @@ const TypeSelection = () => {
             <div className="mx-auto max-w-7xl mt-10 p-4">
                 <div className="block my-6 text-center">
                     <h2 className="text-3xl text-[#060606] font-bold">What brings you to dribbble?</h2>
-                    <p className="mt-2 text-[#757575]">Select the option that describe you. Don't worry, you can explore other option later.</p>
+                    <p className="mt-2 text-gray-500 font-bold">Select the option that describe you. Don't worry, you can explore other option later.</p>
                 </div>
                 <form >
                     <div className="flex mt-16">
