@@ -45,6 +45,7 @@ const Header = () => {
                         <div >
                             <img src="/./svg/user.png" alt="user" />
                         </div>
+                        
                     </div>
                     <div className="float-right w-7 ">
                         <div className="mt-3">

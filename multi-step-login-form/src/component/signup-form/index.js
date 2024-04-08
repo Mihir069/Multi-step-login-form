@@ -11,11 +11,17 @@ const SignUpForm = () => {
     const [isUsernameTaken, setUserNameTaken] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [submitError, setSubmitError] = useState(false);
-    const navigate = useNavigate()
+    const [emailError, setEmailError] = useState(false);
+    const navigate = useNavigate();
+
+    const handleEmailValidate = (email) => {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        
+
         setFormData({
             ...formData,
             [name]: value
@@ -45,22 +51,45 @@ const SignUpForm = () => {
         setSubmitError(false);
     };
 
+    const handleEmail = (e) => {
+        const { name, value } = e.target;
+        if (name === "email") {
+            if (value !== '' && !handleEmailValidate(value)) {
+                setEmailError(true);
+            } else {
+                setEmailError(false);
+            }
+        }
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+        setSubmitError(false);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (formData.name === '' || formData.username === '' || formData.password === '') {
             setSubmitError(true);
+            return;
         }
 
-        else if(formData.password.length<6){
-            setPasswordError(true)
+        if (formData.password.length < 6) {
+            setPasswordError(true);
+            return;
         }
-        else if(formData.username === formData.name){
-            setUserNameTaken(true)
-            return
+
+        if (formData.username === formData.name) {
+            setUserNameTaken(true);
+            return;
         }
-        else{
-            navigate('/signup/createprofile')
+
+        if (!handleEmailValidate(formData.email)) {
+            setEmailError(true);
+            return;
         }
+
+        navigate('/signup/createprofile');
     };
 
     return (
@@ -72,28 +101,17 @@ const SignUpForm = () => {
             </div>
             <div className="mx-auto w-full max-w-sm mt-2">
                 <h2 className="text-2xl text-[#060606] font-bold justify-start">Sign up to Dribbble</h2>
-                {isUsernameTaken && (
-                    <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                        <span className="absolute top-0 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                        <span className="absolute -top-1.5 left-3">Username has already been taken</span>
-                    </p>
-                )}
-                {passwordError && (
-                    <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                        <span className="absolute top-5 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                        <span className="absolute top-3.5 left-3">Password should have at least 6 characters</span>
-                    </p>
-                )}
                 {submitError && (
                     <p className="text-red-500 text-sm mt-5 ml-1 relative">
                         <span className="absolute top-5 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
                         <span className="absolute top-3.5 left-3">Form cannot be blank</span>
                     </p>
                 )}
+
             </div>
 
             <div className="mt-4 mx-auto w-full max-w-sm ">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                     <div className={`grid grid-cols-2 gap-5`}>
                         <div className="my-5 block">
                             <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
@@ -118,7 +136,6 @@ const SignUpForm = () => {
                                 )}
                                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
                             </div>
-
                             <input
                                 type="text"
                                 id="username"
@@ -127,16 +144,41 @@ const SignUpForm = () => {
                                 className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md font-medium text-sm placeholder-slate-400 ${isUsernameTaken ? 'bg-red-200 text-red-500' : ''}`}
                                 value={formData.username}
                                 onChange={handleChange}
+                                onBlur={() => console.log('----')}
                             />
+                            {isUsernameTaken && (
+                                <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                    <span className="absolute -top-3.5 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                    <span className="absolute -top-5 left-3">Username has already been taken</span>
+                                </p>
+                            )}
                         </div>
                     </div>
                     <div className="my-5 block">
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                        <div className="flex">
+                            {emailError && (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className=" w-4"
+                                />
+                            )}
+                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                        </div>
                         <input
                             type="email"
                             placeholder="Email"
-                            className="mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 invalid:bg-red-200"
+                            name="email"
+                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${emailError ? 'bg-red-200' : ''}`}
+                            value={formData.email}
+                            onChange={handleEmail}
                         />
+                        {emailError && (
+                            <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                <span className="absolute -top-5 left-3">Invalid email format</span>
+                            </p>
+                        )}
                     </div>
                     <div className="my-5 block">
                         <div className="flex">
@@ -149,7 +191,6 @@ const SignUpForm = () => {
                             )}
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                         </div>
-                        
                         <input
                             type="password"
                             name="password"
@@ -158,6 +199,12 @@ const SignUpForm = () => {
                             value={formData.password}
                             onChange={handlePassword}
                         />
+                        {passwordError && (
+                            <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                <span className="absolute -top-5 left-3">Password should have at least 6 characters</span>
+                            </p>
+                        )}
                     </div>
                     <div className="my-5">
                         <input type="checkbox" className="border border-gray-400 cursor-pointer" />
@@ -174,7 +221,7 @@ const SignUpForm = () => {
                 </form>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default SignUpForm;

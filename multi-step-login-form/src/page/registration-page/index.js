@@ -16,7 +16,7 @@ const RegistrationPage = () => {
                     </div>
                     <SignBanner />
                 </div>
-                <div className="w-full h-full flex flex-col ">
+                <div className="w-full h-full flex flex-col md:w-9/12">
                     <SignUpForm />
                 </div>
             </div>
