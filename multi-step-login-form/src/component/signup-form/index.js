@@ -4,21 +4,27 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUpForm = () => {
 
     const [isUsernameTaken, setUserNameTaken] = useState(false);
+    const [isUsernameBlank, setIsUserNameBlank] = useState(false);
+    const [UsernameSubmitError,setUsernameSubmitError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [submitError, setSubmitError] = useState(false);
+    const [isPasswordBlank, setPasswordBlank] = useState(false);
+    const [passwordSubmitError,setPasswordSubmitError] = useState(false);
     const [emailError, setEmailError] = useState(false);
-    const [isValid,setIsValid] = useState(false);
+    const [isEmailBlank, setEmailBlank] = useState(false);
+    const [emailSubmitError,setEmailSubmitError] = useState(false);
+    const [nameError, setNameError] = useState(false);
+    const [nameSubmitError,setNameSubmitError] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         username: '',
         email: '',
         password: ''
     });
-    const [blur,setBlur] = useState({
-        name:false,
-        username:false,
-        email:false,
-        password:false
+    const [blur, setBlur] = useState({
+        name: false,
+        username: false,
+        email: false,
+        password: false
     })
     const navigate = useNavigate();
 
@@ -26,8 +32,7 @@ const SignUpForm = () => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return regex.test(email);
     };
-
-    const handleChange = (e) => {
+    const handleNameChange = (e) => {
         const { name, value } = e.target;
 
         setFormData({
@@ -35,12 +40,34 @@ const SignUpForm = () => {
             [name]: value
         });
 
-        if (name === "username" && value === formData.name) {
-            setUserNameTaken(true);
-        } else {
-            setUserNameTaken(false);
+
+        if(name === "name"){
+            if(formData.name === ""){
+                setNameSubmitError(true);
+            }else{
+                setNameSubmitError(false);
+            }
         }
-        setSubmitError(false);
+        setNameSubmitError(false);
+    };
+    const handleUsernameChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+
+        if (name === "username") {
+            if (formData.name === formData.username) {
+                setUserNameTaken(false);
+            } else if (value === formData.name) {
+                setUserNameTaken(true);
+            } else {
+
+            }
+        }
+        setUsernameSubmitError(false);
     };
 
     const handlePassword = (e) => {
@@ -56,7 +83,7 @@ const SignUpForm = () => {
             ...formData,
             [name]: value
         });
-        setSubmitError(false);
+        setPasswordSubmitError(false);
     };
 
     const handleEmail = (e) => {
@@ -72,28 +99,28 @@ const SignUpForm = () => {
             ...formData,
             [name]: value
         });
-        setSubmitError(false);
+        setEmailSubmitError(false);
     };
 
-    const handleBlur = (e) =>{
-        const {name,value} = e.target;
+    const handleBlur = (e) => {
+        const { name, value } = e.target;
         setBlur({
             ...blur,
-            [name]:true
+            [name]: true
         })
-        if(value.trim() ===''){
-            switch(name){
+        if (value.trim() === '') {
+            switch (name) {
                 case 'name':
-                    setSubmitError(true);
+                    setNameError(true);
                     break;
                 case 'username':
-                    setSubmitError(true);
+                    setIsUserNameBlank(true);
                     break;
                 case 'email':
-                    setSubmitError(true);
+                    setEmailBlank(true);
                     break;
                 case 'password':
-                    setSubmitError(true);
+                    setPasswordBlank(true);
                     break;
                 default:
                     break;
@@ -102,26 +129,26 @@ const SignUpForm = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         const { name, username, email, password } = formData;
-        let formErrors = {};
 
-        if (!name) formErrors.name = true;
-        if (!username) formErrors.username = true;
-        if (!email) formErrors.email = true;
-        if (!password) formErrors.password = true;
-        setSubmitError(Object.keys(formErrors).length > 0);
+        const isAnyFieldBlank = !name.trim() || !username.trim() || !email.trim() || !password.trim();
+    
+        const nameError = !name.trim();
+        const usernameError = !username.trim();
+        const emailError = !email.trim() || !handleEmailValidate(email);
+        const passwordError = password.length < 6;
 
-        const hasErrors = Object.keys(formErrors).length > 0;
-        const isValid = !hasErrors && !isUsernameTaken && !passwordError && !emailError;
-
-        if (isValid) {
+        setNameSubmitError(nameError);
+        setUsernameSubmitError(usernameError);
+        setEmailSubmitError(emailError);
+        setPasswordSubmitError(passwordError);
+    
+        if (!isAnyFieldBlank && !nameError && !usernameError && !emailError && !passwordError && !isUsernameTaken) {
             navigate('/signup/createprofile');
-        } else {
-            setIsValid(false);
         }
     };
-
+    
 
     return (
         <>
@@ -145,39 +172,58 @@ const SignUpForm = () => {
                     <div className={`grid grid-cols-2 gap-5`}>
                         <div className="my-5 block">
                             <div className="flex">
-                                {submitError && (
+                                {nameSubmitError || (nameError && !formData.name) ? (
                                     <img
                                         src="/./svg/triangle-exclamation-solid.svg"
                                         alt="Warning sign"
                                         className=" w-4"
                                     />
-                                )}
+                                ) : ''}
                                 <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
                             </div>
-                            
+
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
                                 placeholder="Name"
-                                className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md font-medium text-sm placeholder-slate-400 ${submitError && !formData.name ? 'bg-red-200 text-red-500' : ''}`}
+                                className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md font-medium text-sm placeholder-slate-400 ${nameSubmitError || (nameError && !formData.name) ? 'bg-red-200 text-red-500' : ''}`}
                                 value={formData.name}
-                                onChange={handleChange}
-                                // onBlur={handleBlur}
+                                onChange={handleNameChange}
+                                onBlur={handleBlur}
                             />
-                            {submitError && !formData.name && (
-                                <p className="text-red-500 text-sm mt-1 ml-1">Name cannot be blank</p>
+                            {nameSubmitError ? (
+                                <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                    <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                    <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                </p>
+                            ) : (
+                                <>
+                                    {nameError && !formData.name && (
+                                        <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                            <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                            <span className="absolute -top-5 left-3">Name cannot be blank</span>
+                                        </p>
+                                    )}
+                                </>
                             )}
                         </div>
                         <div className="my-5 block">
                             <div className="flex">
-                                {isUsernameTaken || (submitError && !formData.username)? (
+                                {UsernameSubmitError || (isUsernameBlank && !formData.username) ? (
                                     <img
                                         src="/./svg/triangle-exclamation-solid.svg"
                                         alt="Warning sign"
-                                        className=" w-4"
+                                        className="w-4"
                                     />
-                                ):''}
+                                ) : isUsernameTaken && (
+                                    <img
+                                        src="/./svg/triangle-exclamation-solid.svg"
+                                        alt="Warning sign"
+                                        className="w-4"
+                                    />
+                                )}
+
                                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
                             </div>
                             <input
@@ -185,76 +231,128 @@ const SignUpForm = () => {
                                 id="username"
                                 name="username"
                                 placeholder="Username"
-                                className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md font-medium text-sm placeholder-slate-400 ${isUsernameTaken ||(submitError && !formData.username) ? 'bg-red-200 text-red-500' : ''}`}
+                                className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md font-medium text-sm placeholder-slate-400 ${UsernameSubmitError || ((isUsernameBlank) && !formData.username) ? 'bg-red-200 text-red-500' : ''} ${isUsernameTaken && ('bg-red-200 text-red-500')}`}
                                 value={formData.username}
-                                onChange={handleChange}
-                                // onBlur={handleBlur}
+                                onChange={handleUsernameChange}
+                                onBlur={handleBlur}
 
                             />
-                            {submitError && !formData.username && (
-                                <p className="text-red-500 text-sm mt-1 ml-1">Username cannot be blank</p>
+                            {UsernameSubmitError ? (
+                                <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                    <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                    <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                </p>
+                            ) : (
+                                <>
+                                    {isUsernameBlank && !formData.username ? (
+                                        <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                            <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                            <span className="absolute -top-5 left-3">Username cannot be blank</span>
+                                        </p>
+                                    ) : null}
+                                </>
                             )}
+
                         </div>
                     </div>
                     <div className="my-5 block">
                         <div className="flex">
-                            {emailError||(submitError && !formData.email)? (
+                            {emailError && (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
-                                    className=" w-4"
+                                    className="w-4"
                                 />
-                            ):''}
+                            )}
+
+                            {!emailError && isEmailBlank && (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className="w-4"
+                                />
+                            )}
+
+                            {!emailError && !isEmailBlank && emailSubmitError && !formData.email && (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className="w-4"
+                                />
+                            )}
+
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         </div>
                         <input
                             type="email"
                             placeholder="Email"
                             name="email"
-                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${emailError ||(submitError && !formData.email) ? 'bg-red-200' : ''}`}
+                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 font-medium ${emailSubmitError || ((isEmailBlank) && !formData.email) ? 'bg-red-200' : ''} ${emailError && ('bg-red-200 text-red-500')}`}
                             value={formData.email}
                             onChange={handleEmail}
-                            // onBlur={handleBlur}
+                            onBlur={handleBlur}
                         />
-                        {submitError && !formData.email && (
-                            <p className="text-red-500 text-sm mt-1 ml-1">Email cannot be blank</p>
-                        )}
-                        {emailError && (
+                        {emailSubmitError ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
                                 <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                <span className="absolute -top-5 left-3">Invalid email format</span>
+                                <span className="absolute -top-5 left-3">Submission error occurred</span>
                             </p>
+                        ) : (
+                            <>
+                                {isEmailBlank && !formData.email && (
+                                    <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                        <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                        <span className="absolute -top-5 left-3">Email cannot be blank</span>
+                                    </p>
+                                )}
+                                {formData.email && emailError && (
+                                    <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                        <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                        <span className="absolute -top-5 left-3">Invalid email format</span>
+                                    </p>
+                                )}
+                            </>
                         )}
+
+
                     </div>
                     <div className="my-5 block">
                         <div className="flex">
-                            {passwordError ||(submitError && !formData.password)? (
+                            {(passwordError || isPasswordBlank) || (passwordSubmitError && !formData.password) ? (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
                                     className=" w-4"
                                 />
-                            ):''}
+                            ) : ''}
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                         </div>
                         <input
                             type="password"
                             name="password"
                             placeholder="6+ characters"
-                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${passwordError ||(submitError && !formData.password) ? 'bg-red-200' : ''}`}
+                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${(passwordError || isPasswordBlank) || (passwordSubmitError && !formData.password) ? 'bg-red-200' : ''}`}
                             value={formData.password}
                             onChange={handlePassword}
-                            // onBlur={handleBlur}
+                            onBlur={handleBlur}
                         />
-                        {submitError && !formData.password && (
-                            <p className="text-red-500 text-sm mt-1 ml-1">Password cannot be blank</p>
-                        )}
-                        {passwordError && (
+                        {passwordSubmitError ? (
+                            <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                <span className="absolute -top-5 left-3">Submission error occurred</span>
+                            </p>
+                        ) : isPasswordBlank && !formData.password ? (
+                            <p className="text-red-500 text-sm mt-5 ml-1 relative">
+                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                <span className="absolute -top-5 left-3">Password cannot be blank</span>
+                            </p>
+                        ) : passwordError ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
                                 <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
                                 <span className="absolute -top-5 left-3">Password should have at least 6 characters</span>
                             </p>
-                        )}
+                        ) : null}
+
 
                     </div>
                     <div className="my-5">
@@ -264,7 +362,7 @@ const SignUpForm = () => {
                         </span>
                     </div>
                     <div className="mt-5">
-                        <button className="bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4" onClick={handleSubmit}>Create Account</button>
+                        <button className="bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Create Account</button>
                     </div>
                     <span className="text-xs block text-gray-500 w-80 mt-4">
                         This site is protected by reCAPTCHA and the Google <Link to="/" className="text-blue-500 font-semibold">Privacy Policy</Link> and <Link to="/" className="text-blue-500 font-semibold">Terms of Service</Link> apply
