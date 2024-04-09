@@ -237,14 +237,14 @@ const SignUpForm = () => {
                             />
                             {UsernameSubmitError ? (
                                 <p className="text-red-500 text-sm ml-1 relative">
-                                    
+
                                     <span className="absolute top-= left-0">Username is required</span>
                                 </p>
                             ) : (
                                 <>
                                     {isUsernameBlank && !formData.username ? (
                                         <p className="text-red-500 text-sm ml-1 relative">
-                                            
+
                                             <span className="absolute top-0 left-0">Username is required</span>
                                         </p>
                                     ) : null}
@@ -255,14 +255,30 @@ const SignUpForm = () => {
                     </div>
                     <div className="my-7 block">
                         <div className="flex">
-                            {emailError || isEmailBlank || (emailSubmitError && !formData.email) ? (
+                            {emailSubmitError ? (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
                                     className="w-4 mr-1"
                                 />
-                            ) : ''}
-
+                            ) : (
+                                <>
+                                    {isEmailBlank && !formData.email && (
+                                        <img
+                                            src="/./svg/triangle-exclamation-solid.svg"
+                                            alt="Warning sign"
+                                            className="w-4 mr-1"
+                                        />
+                                    )}
+                                    {formData.email && emailError && (
+                                        <img
+                                            src="/./svg/triangle-exclamation-solid.svg"
+                                            alt="Warning sign"
+                                            className="w-4 mr-1"
+                                        />
+                                    )}
+                                </>
+                            )}
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         </div>
                         <input
