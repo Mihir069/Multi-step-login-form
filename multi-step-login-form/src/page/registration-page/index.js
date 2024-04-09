@@ -6,7 +6,7 @@ const RegistrationPage = () => {
     return (
         <>
             <div className="sign-in w-full min-h-screen flex flex-col md:flex-row">
-                <div className="relative w-full md:w-1/2 flex flex-col justify-center items-center">
+                <div className="relative w-full md:w-1/2 flex flex-col justify-center items-center ">
                     <div className="absolute top-[20%] left-[10%] flex flex-col">
                         <span className="my-4">
                             <img src="/./svg/dribbble.png" alt="logo" className="w-1/4 hidden md:block"/>
@@ -16,7 +16,7 @@ const RegistrationPage = () => {
                     </div>
                     <SignBanner />
                 </div>
-                <div className="w-full h-full flex flex-col md:w-9/12">
+                <div className="w-full h-full flex flex-col md:w-9/12 p-6">
                     <SignUpForm />
                 </div>
             </div>

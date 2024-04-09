@@ -28,6 +28,7 @@ const TypeSelection = () => {
     };
 
     const isButtonDisabled = selectedItems.length === 0;
+
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-12 pt-10 px-10">
@@ -41,13 +42,15 @@ const TypeSelection = () => {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl mt-10 p-4">
+            <div className="  mx-auto max-w-7xl mt-4 p-4">
                 <div className="block my-6 text-center">
                     <h2 className="text-3xl text-[#060606] font-bold">What brings you to dribbble?</h2>
-                    <p className="mt-2 text-gray-800 font-bold">Select the options that describe you. Don't worry, you can explore other options later.</p>
+                    <p className="mt-2 text-gray-800 font-bold">
+                        Select the options that describe you. Don't worry, you can explore other options later.
+                    </p>
                 </div>
                 <form>
-                    <div className="flex mt-16">
+                    <div className="md:flex mt-16">
                         {[
                             {
                                 image: '/./svg/choice-logo-1.png',
@@ -63,7 +66,7 @@ const TypeSelection = () => {
                             }
                         ].map((option, index) => (
                             <div key={index} className="max-w-sm rounded border overflow-hidden shadow-lg m-5">
-                                <div className="px-6 py-4">
+                                <div className=" py-4">
                                     <img src={option.image} alt="logo" className="max-w-80" />
                                     <p className="text-gray-700 font-bold text-2xl text-center">{option.text}</p>
                                     <div className="w-full">
@@ -78,15 +81,29 @@ const TypeSelection = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex my-10 justify-center">
+                    {selectedItems.length > 0 && (
+                        <p className=" text-center font-bold mt-5 text-gray-800 relative">
+                            Anything else? You can select multiple
+                        </p>
+                    )}
+
+                    <div className="flex my-3 justify-center">
                         <button
-                            className={`bg-pink-500 hover:bg-pink-800 py-3 text-white rounded-md w-64 ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`bg-pink-500 hover:bg-pink-800 py-3  text-white rounded-md w-64 ${
+                                isButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
                             onClick={handleClickButton}
                             disabled={isButtonDisabled}
                         >
                             Finish
                         </button>
                     </div>
+                    {selectedItems.length > 0 && (
+                        <div className="mt-2 
+                        text-center">
+                            <p className="text-sm font-bold text-gray-500">or Press RETURN</p>
+                        </div>
+                    )}
                 </form>
             </div>
         </>

@@ -169,14 +169,14 @@ const SignUpForm = () => {
 
             <div className="mt-4 mx-auto w-full max-w-sm ">
                 <form onSubmit={handleSubmit} noValidate>
-                    <div className={`grid grid-cols-2 gap-5`}>
-                        <div className="my-5 block">
+                    <div className={`grid grid-cols-2 gap-5 my-6`}>
+                        <div className="block">
                             <div className="flex">
                                 {nameSubmitError || (nameError && !formData.name) ? (
                                     <img
                                         src="/./svg/triangle-exclamation-solid.svg"
                                         alt="Warning sign"
-                                        className=" w-4"
+                                        className=" w-4 mr-1"
                                     />
                                 ) : ''}
                                 <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
@@ -194,33 +194,31 @@ const SignUpForm = () => {
                             />
                             {nameSubmitError ? (
                                 <p className="text-red-500 text-sm  ml-1 relative">
-                                    <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                    <span className="absolute top-1 left-3">Submission error occurred</span>
+                                    <span className="absolute top-0 left-0">Name is required</span>
                                 </p>
                             ) : (
                                 <>
                                     {nameError && !formData.name && (
                                         <p className="text-red-500 text-sm ml-1 relative">
-                                            <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                            <span className="absolute top-1 left-3">Name cannot be blank</span>
+                                            <span className="absolute top-0 left-0">Name is required</span>
                                         </p>
                                     )}
                                 </>
                             )}
                         </div>
-                        <div className="my-5 block">
+                        <div className="block">
                             <div className="flex">
                                 {UsernameSubmitError || (isUsernameBlank && !formData.username) ? (
                                     <img
                                         src="/./svg/triangle-exclamation-solid.svg"
                                         alt="Warning sign"
-                                        className="w-4"
+                                        className="w-4 mr-1"
                                     />
                                 ) : isUsernameTaken && (
                                     <img
                                         src="/./svg/triangle-exclamation-solid.svg"
                                         alt="Warning sign"
-                                        className="w-4"
+                                        className="w-4 mr-1"
                                     />
                                 )}
 
@@ -239,15 +237,15 @@ const SignUpForm = () => {
                             />
                             {UsernameSubmitError ? (
                                 <p className="text-red-500 text-sm ml-1 relative">
-                                    <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                    <span className="absolute top-1 left-3">Submission error occurred</span>
+                                    
+                                    <span className="absolute top-= left-0">Username is required</span>
                                 </p>
                             ) : (
                                 <>
                                     {isUsernameBlank && !formData.username ? (
                                         <p className="text-red-500 text-sm ml-1 relative">
-                                            <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                            <span className="absolute top-1 left-3">Username cannot be blank</span>
+                                            
+                                            <span className="absolute top-0 left-0">Username is required</span>
                                         </p>
                                     ) : null}
                                 </>
@@ -255,31 +253,15 @@ const SignUpForm = () => {
 
                         </div>
                     </div>
-                    <div className="my-5 block">
+                    <div className="my-7 block">
                         <div className="flex">
-                            {emailError && (
+                            {emailError || isEmailBlank || (emailSubmitError && !formData.email) ? (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
-                                    className="w-4"
+                                    className="w-4 mr-1"
                                 />
-                            )}
-
-                            {!emailError && isEmailBlank && (
-                                <img
-                                    src="/./svg/triangle-exclamation-solid.svg"
-                                    alt="Warning sign"
-                                    className="w-4"
-                                />
-                            )}
-
-                            {!emailError && !isEmailBlank && emailSubmitError && !formData.email && (
-                                <img
-                                    src="/./svg/triangle-exclamation-solid.svg"
-                                    alt="Warning sign"
-                                    className="w-4"
-                                />
-                            )}
+                            ) : ''}
 
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         </div>
@@ -294,21 +276,18 @@ const SignUpForm = () => {
                         />
                         {emailSubmitError ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                <span className="absolute -top-5 left-0">Email is required</span>
                             </p>
                         ) : (
                             <>
                                 {isEmailBlank && !formData.email && (
                                     <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                        <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                        <span className="absolute -top-5 left-3">Email cannot be blank</span>
+                                        <span className="absolute -top-5 left-0">Email is required</span>
                                     </p>
                                 )}
                                 {formData.email && emailError && (
                                     <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                        <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                        <span className="absolute -top-5 left-3">Invalid email format</span>
+                                        <span className="absolute -top-5 left-0">Invalid email format</span>
                                     </p>
                                 )}
                             </>
@@ -316,13 +295,13 @@ const SignUpForm = () => {
 
 
                     </div>
-                    <div className="my-5 block">
+                    <div className="my-7 block">
                         <div className="flex">
                             {(passwordError || isPasswordBlank) || (passwordSubmitError && !formData.password) ? (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
-                                    className=" w-4"
+                                    className=" w-4 mr-1"
                                 />
                             ) : ''}
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
@@ -338,18 +317,15 @@ const SignUpForm = () => {
                         />
                         {passwordSubmitError ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                <span className="absolute -top-5 left-0">Password is required</span>
                             </p>
                         ) : isPasswordBlank && !formData.password ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                <span className="absolute -top-5 left-3">Password cannot be blank</span>
+                                <span className="absolute -top-5 left-0">Password is required</span>
                             </p>
                         ) : passwordError ? (
                             <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                <span className="absolute -top-5 left-3">Password should have at least 6 characters</span>
+                                <span className="absolute -top-5 left-0">Password should have at least 6 characters</span>
                             </p>
                         ) : null}
 
@@ -361,7 +337,7 @@ const SignUpForm = () => {
                             Creating an account means you're okay with our <Link to="/" className="text-blue-500 font-semibold">Terms of Service</Link>, <Link to="/" className="text-blue-500 font-semibold">Privacy Policy</Link> and our default <Link to="/" className="text-blue-500 font-semibold">Settings</Link>.
                         </span>
                     </div>
-                    <div className="mt-5">
+                    <div className="mt-6">
                         <button className="bg-pink-500 hover:bg-pink-800 py-3 text-center text-white rounded-md w-2/4">Create Account</button>
                     </div>
                     <span className="text-xs block text-gray-500 w-80 mt-4">
