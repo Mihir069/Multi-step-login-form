@@ -160,9 +160,9 @@ const SignUpForm = () => {
             <div className="mx-auto w-full max-w-sm">
                 <h2 className="text-2xl text-[#060606] font-bold justify-start">Sign up to Dribbble</h2>
                 {isUsernameTaken && (
-                    <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                        <span className="absolute -top-3.5 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                        <span className="absolute -top-5 left-3">Username has already been taken</span>
+                    <p className="text-red-500 text-sm  ml-1 relative">
+                        <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                        <span className="absolute top-1 left-3">Username has already been taken</span>
                     </p>
                 )}
             </div>
@@ -193,16 +193,16 @@ const SignUpForm = () => {
                                 onBlur={handleBlur}
                             />
                             {nameSubmitError ? (
-                                <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                    <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                    <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                <p className="text-red-500 text-sm  ml-1 relative">
+                                    <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                    <span className="absolute top-1 left-3">Submission error occurred</span>
                                 </p>
                             ) : (
                                 <>
                                     {nameError && !formData.name && (
-                                        <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                            <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                            <span className="absolute -top-5 left-3">Name cannot be blank</span>
+                                        <p className="text-red-500 text-sm ml-1 relative">
+                                            <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                            <span className="absolute top-1 left-3">Name cannot be blank</span>
                                         </p>
                                     )}
                                 </>
@@ -238,16 +238,16 @@ const SignUpForm = () => {
 
                             />
                             {UsernameSubmitError ? (
-                                <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                    <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                    <span className="absolute -top-5 left-3">Submission error occurred</span>
+                                <p className="text-red-500 text-sm ml-1 relative">
+                                    <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                    <span className="absolute top-1 left-3">Submission error occurred</span>
                                 </p>
                             ) : (
                                 <>
                                     {isUsernameBlank && !formData.username ? (
-                                        <p className="text-red-500 text-sm mt-5 ml-1 relative">
-                                            <span className="absolute -top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
-                                            <span className="absolute -top-5 left-3">Username cannot be blank</span>
+                                        <p className="text-red-500 text-sm ml-1 relative">
+                                            <span className="absolute top-3 left-0 h-2 w-2 bg-red-500 rounded-full mr-1"></span>
+                                            <span className="absolute top-1 left-3">Username cannot be blank</span>
                                         </p>
                                     ) : null}
                                 </>
