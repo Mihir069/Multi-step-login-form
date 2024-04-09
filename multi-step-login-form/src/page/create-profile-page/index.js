@@ -39,13 +39,13 @@ const CreateProfile = () => {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-12 pt-8 px-10">
-                <div className="col-span-4 md:col-span-1">
+                <div className="col-span-4 md:col-span-1 flex justify-center">
                     <div className="float-left">
                         <Logo />
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-2xl p-4">
+            <div className="mx-auto max-w-2xl p-4 md:flex md:flex-col ">
                 <div className="block my-6">
                     <h2 className="text-3xl text-[#060606] font-bold">Welcome, Let's create your profile</h2>
                     <p className="mt-2 text-[#757575]">Let others get to know you better! You can do these later</p>
