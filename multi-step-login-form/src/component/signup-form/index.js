@@ -5,15 +5,15 @@ const SignUpForm = () => {
 
     const [isUsernameTaken, setUserNameTaken] = useState(false);
     const [isUsernameBlank, setIsUserNameBlank] = useState(false);
-    const [UsernameSubmitError,setUsernameSubmitError] = useState(false);
+    const [UsernameSubmitError, setUsernameSubmitError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [isPasswordBlank, setPasswordBlank] = useState(false);
-    const [passwordSubmitError,setPasswordSubmitError] = useState(false);
+    const [passwordSubmitError, setPasswordSubmitError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [isEmailBlank, setEmailBlank] = useState(false);
-    const [emailSubmitError,setEmailSubmitError] = useState(false);
+    const [emailSubmitError, setEmailSubmitError] = useState(false);
     const [nameError, setNameError] = useState(false);
-    const [nameSubmitError,setNameSubmitError] = useState(false);
+    const [nameSubmitError, setNameSubmitError] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         username: '',
@@ -41,10 +41,10 @@ const SignUpForm = () => {
         });
 
 
-        if(name === "name"){
-            if(formData.name === ""){
+        if (name === "name") {
+            if (formData.name === "") {
                 setNameSubmitError(true);
-            }else{
+            } else {
                 setNameSubmitError(false);
             }
         }
@@ -129,11 +129,11 @@ const SignUpForm = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         const { name, username, email, password } = formData;
 
         const isAnyFieldBlank = !name.trim() || !username.trim() || !email.trim() || !password.trim();
-    
+
         const nameError = !name.trim();
         const usernameError = !username.trim();
         const emailError = !email.trim() || !handleEmailValidate(email);
@@ -143,12 +143,12 @@ const SignUpForm = () => {
         setUsernameSubmitError(usernameError);
         setEmailSubmitError(emailError);
         setPasswordSubmitError(passwordError);
-    
+
         if (!isAnyFieldBlank && !nameError && !usernameError && !emailError && !passwordError && !isUsernameTaken) {
             navigate('/signup/createprofile');
         }
     };
-    
+
 
     return (
         <>
