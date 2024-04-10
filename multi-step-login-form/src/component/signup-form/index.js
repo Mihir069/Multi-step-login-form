@@ -313,20 +313,34 @@ const SignUpForm = () => {
                     </div>
                     <div className="my-7 block">
                         <div className="flex">
-                            {(passwordError || isPasswordBlank) || (passwordSubmitError && !formData.password) ? (
+
+                            {passwordSubmitError ? (
                                 <img
                                     src="/./svg/triangle-exclamation-solid.svg"
                                     alt="Warning sign"
                                     className=" w-4 mr-1"
                                 />
-                            ) : ''}
+                            ) : isPasswordBlank && !formData.password ? (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className=" w-4 mr-1"
+                                />
+                            ) : passwordError ? (
+                                <img
+                                    src="/./svg/triangle-exclamation-solid.svg"
+                                    alt="Warning sign"
+                                    className=" w-4 mr-1"
+                                />
+                            ) : null}
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                         </div>
                         <input
                             type="password"
                             name="password"
                             placeholder="6+ characters"
-                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${(passwordError || isPasswordBlank) || (passwordSubmitError && !formData.password) ? 'bg-red-200' : ''}`}
+                            className={`mt-1 w-full px-3 py-2 bg-gray-200 border-slate-300 rounded-md text-sm placeholder-slate-400 ${passwordSubmitError ? ('bg-red-200') : isPasswordBlank && !formData.password ? ('bg-red-200') : passwordError ? ('bg-red-200') : ''}
+                                }`}
                             value={formData.password}
                             onChange={handlePassword}
                             onBlur={handleBlur}

@@ -16,7 +16,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900 hidden md:block">
                         <h2 className="font-bold mb-4">For designers</h2>
                         <ul className="text-gray-600 font-medium">
                             <li className="mb-3"><Link to='/' className="hover:underline">Go Pro!</Link></li>
@@ -30,7 +30,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900 hidden md:block">
                         <h2 className="font-bold mb-4">Hire designers</h2>
                         <ul className="text-gray-600 font-medium">
                             <li className="mb-3"><Link to='/' className="hover:underline">Post a job opening</Link></li>
@@ -44,7 +44,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900 hidden md:block">
                         <h2 className="font-bold mb-4">Company</h2>
                         <ul className="text-gray-600 font-medium">
                             <li className="mb-3"><Link to='/' className="hover:underline">About</Link></li>
@@ -59,7 +59,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900 hidden md:block">
                         <h2 className="font-bold mb-4">Directories</h2>
                         <ul className="text-gray-600 font-medium">
                             <li className="mb-3"><Link to='/' className="hover:underline">Design jobs</Link></li>
@@ -84,7 +84,7 @@ const Footer = () => {
                     </div>
                     
                     
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900 hidden md:block">
                         <h2 className="font-bold mb-4">Design Resources</h2>
                         <ul className="text-gray-600 font-medium">
                             <li className="mb-3"><Link to='/' className="hover:underline">Freelaning</Link></li>

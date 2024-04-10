@@ -17,9 +17,9 @@ const UploadImg = ({ onImageChange }) => {
 
     return (
         <div className="flex items-center space-x-6">
-            <div>
+            <div className="w-32">
                 <img
-                    className="h-32 w-32 object-cover rounded-full outline-dashed outline-gray-400"
+                   className=" h-28 w-28  object-cover rounded-full outline-dashed outline-gray-400"
                     src={previewImage || '/./svg/camera.png'}
                     alt={previewImage ? 'Preview' : ''}
                 />
