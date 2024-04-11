@@ -66,10 +66,10 @@ const CreateProfile = () => {
                             onChange={handleLocationChange}
                         />
                     </div>
-                    <div className="my-10">
+                    <div className="py-5">
                         {location.trim() !== '' && !isLocationValid && (
-                            <p className="text-sm text-center text-red-400 mt-1 font-semibold w-2/5">
-                                Valid locations: India, San Francisco
+                            <p className="text-red-500 text-sm  ml-1 relative">
+                                <span className="absolute bottom-1 left-3">Valid locations: India, San Francisco</span>
                             </p>
                         )}
                         <button
@@ -79,7 +79,9 @@ const CreateProfile = () => {
                             Next
                         </button>
                         {isLocationValid && (
-                            <p className="text-sm text-center text-gray-400 font-bold w-2/5 mt-1">or Press RETURN</p>
+                            <p className="text-sm  ml-1 relative">
+                                <span className="absolute top-0 left-0 text-center text-gray-400 font-bold w-2/5 mt-1">or Press RETURN</span>
+                            </p>
                         )}
                     </div>
                 </form>

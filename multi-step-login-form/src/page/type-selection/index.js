@@ -66,13 +66,13 @@ const TypeSelection = () => {
                             }
                         ].map((option, index) => (
                             <div key={index} className="max-w-sm rounded border overflow-hidden shadow-lg m-5">
-                                <div className=" py-4">
+                                <div className=" py-4 px-4">
                                     <img src={option.image} alt="logo" className="max-w-80" />
                                     <p className="text-gray-700 font-bold text-2xl text-center">{option.text}</p>
                                     <div className="w-full">
                                         <input
                                             type="checkbox"
-                                            className="rounded-full mx-32 my-4 p-3 accent-pink-700 cursor-pointer"
+                                            className="rounded-full mx-36 my-4 p-3 accent-pink-700 cursor-pointer"
                                             checked={selectedItems.includes(option.text)}
                                             onChange={() => handleCheckboxChange(option.text)}
                                         />
@@ -82,12 +82,12 @@ const TypeSelection = () => {
                         ))}
                     </div>
                     {selectedItems.length > 0 && (
-                        <p className=" text-center font-bold mt-5 text-gray-800 relative">
-                            Anything else? You can select multiple
+                        <p className="text-sm  ml-1 relative">
+                            <span className="absolute -top-1 right-[370px] text-center text-gray-800 font-bold w-2/5 mt-1">Anything else? You can select multiple</span>
                         </p>
                     )}
 
-                    <div className="flex my-3 justify-center">
+                    <div className="flex py-7 justify-center">
                         <button
                             className={`bg-pink-500 hover:bg-pink-800 py-3  text-white rounded-md w-64 ${
                                 isButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''
@@ -99,10 +99,9 @@ const TypeSelection = () => {
                         </button>
                     </div>
                     {selectedItems.length > 0 && (
-                        <div className="mt-2 
-                        text-center">
-                            <p className="text-sm font-bold text-gray-500">or Press RETURN</p>
-                        </div>
+                        <p className="text-sm  ml-1 relative">
+                            <span className="absolute -top-7 right-[370px] text-center text-gray-400 font-bold w-2/5 mt-1">or Press RETURN</span>
+                        </p>
                     )}
                 </form>
             </div>
